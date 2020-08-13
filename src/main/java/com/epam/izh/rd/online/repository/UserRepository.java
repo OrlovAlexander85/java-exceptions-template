@@ -39,7 +39,6 @@ public class UserRepository implements IUserRepository {
         } else {
             userWithSameLogin.setPassword(user.getPassword());
         }
-
         return user;
     }
 
@@ -51,7 +50,6 @@ public class UserRepository implements IUserRepository {
     @Override
     public User findByLogin(String login) {
         Objects.requireNonNull(login, "Отсутствует логин для поиска пользователя");
-
         return userDatabase.stream()
                 .filter(user -> user.getLogin().equalsIgnoreCase(login))
                 .findFirst().orElse(null);
@@ -67,12 +65,10 @@ public class UserRepository implements IUserRepository {
     @Override
     public void deleteByLogin(String login) {
         Objects.requireNonNull(login, "Отсутствует логин для удаления пользователя");
-
         if (CurrentUserManager.getCurrentLoggedInUser() == null || !CurrentUserManager.getCurrentLoggedInUser()
                 .getLogin().equalsIgnoreCase("admin")) {
             throw new UnsupportedOperationException("You have no access to call this method!!! Noooooo!!!");
         }
-
         userDatabase.removeIf(user -> user.getLogin().equalsIgnoreCase(login));
     }
 }
