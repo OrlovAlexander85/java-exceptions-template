@@ -1,6 +1,7 @@
 package com.epam.izh.rd.online.exception;
 
-public class NotCorrectPasswordException extends Throwable {
-    public NotCorrectPasswordException(String не_верный_пароль) {
+public class NotCorrectPasswordException extends Exception {
+    public NotCorrectPasswordException(String message) {
+        super(message);
     }
 }
